@@ -3,9 +3,9 @@ import React, {Component} from 'react';
 // import axios from 'axios';
 import { getUserData } from './../../dux/reducer';
 import { connect } from 'react-redux';
-import './Home.css';
+import './Dash.css';
 
-class Home extends Component {
+class Dash extends Component {
     constructor(props) {
         super(props);
 
@@ -41,4 +41,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, { getUserData }) (Home);
+export default connect(mapStateToProps, { getUserData }) (Dash);

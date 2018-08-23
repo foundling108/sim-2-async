@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import axios from 'axios';
+import axios from 'axios';
 
 import { logout } from './../../dux/reducer';
 
@@ -14,12 +14,12 @@ class Nav extends Component {
         this.logout = this.logout.bind(this);
     }
 
-    // logout() {
-    //     axios.get('/api/auth/logout')
-    //     .then( ()=>{
-    //         this.props.history.push('/');
-    //     })
-    //     }
+    logout() {
+        axios.get('/api/auth/logout')
+        .then( ()=>{
+            this.props.history.push('/');
+        })
+        }
     
 
     render() {

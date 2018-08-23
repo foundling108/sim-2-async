@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import {HashRouter} from 'react-router-dom';
+import store from './dux/store';
 
 import './reset.css';
 import './index.css';
@@ -9,9 +11,11 @@ import App from './App';
 ReactDOM.render(
 
 
-    <HashRouter>
+    <Provider store={ store }>
+        <HashRouter>
             <App />
-    </HashRouter>
+        </HashRouter>
+    </Provider>
 
 
 , document.getElementById('root'));
