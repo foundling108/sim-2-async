@@ -15,6 +15,7 @@ const initialState = {
   }
   
   const USER_DATA = 'USER_DATA';
+  const UPDATE_USER = 'UPDATE_USER';
   const PLACE_INFO = 'PLACE_INFO';
   const IMAGE_INFO = 'IMAGE_INFO';
   const LOGOUT = 'LOGOUT';
@@ -24,6 +25,8 @@ const initialState = {
     switch (type) {
       case USER_DATA:
         return Object.assign({}, state, { user: payload });
+      case UPDATE_USER:
+        return { ...state, username: payload.username, password: payload.password };
       case PLACE_INFO:
         return Object.assign( {}, state, {placeObj: payload} );
       case IMAGE_INFO:
@@ -40,6 +43,13 @@ const initialState = {
       type: USER_DATA,
       payload: user
     };
+  }
+
+  export function updateUser(user) {
+    return {
+      type: UPDATE_USER,
+      payload: user
+    }
   }
 
   export function updatePlace(placeObj){

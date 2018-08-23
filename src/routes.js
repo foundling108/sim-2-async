@@ -13,10 +13,10 @@ export default (
     <Switch>
         <Route component={Auth} path='/' exact/>
         <Route component={Dash} path='/dash' exact/>
-        <Route component={Wizard1} path='/wizard/1' exact/>
-        <Route component={Wizard2} path='/wizard/2' exact/>
-        <Route component={Wizard3} path='/wizard/3' exact/>
-        <Route component={Wizard4} path='/wizard/4' exact/>
-        <Route component={Wizard5} path='/wizard/5' exact/>
+        <Route component={Wizard1} path='/wizard/wizard1' exact/>
+        <Route component={Wizard2} path='/wizard/wizard2' exact/>
+        <Route component={Wizard3} path='/wizard/wizard3' exact/>
+        <Route component={Wizard4} path='/wizard/wizard4' exact/>
+        <Route component={Wizard5} path='/wizard/wizard5' exact/>
     </Switch>
 )

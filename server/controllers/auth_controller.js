@@ -1,6 +1,6 @@
 module.exports = {
 
-    signup: ( req, res ) => {
+    register: ( req, res ) => {
         const dbInstance = req.app.get('db');
         const { username, password} = req.body
 
@@ -15,11 +15,11 @@ module.exports = {
     },
 
     login: async( req, res, next ) => {
-        const { username, password } = req.body;
         const dbInstance = req.app.get('db');
-        const users = await dbInstance.users.get_users()            
+        const { username, password } = req.body;
         const match = users.find( user => user.username === username && user.password === password );
 
+        await dbInstance.users.get_users([ username, password ])            
         if ( match ) {
             req.session.user = match;
             res.status(200).send(req.session.user);
