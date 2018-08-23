@@ -18,8 +18,22 @@ class Auth extends Component {
 
     render() {
         return(
-            <section>
-                Auth
+            <section className='auth-box'>
+                <div className='auth-logo'>
+                    <img src='./../../icons/auth_logo.png' alt="Houser"/>
+                </div>
+                <div className='auth-input-box' >
+                    <p className='user-pass'>Username</p>
+                    <input className='auth-input' type="text"/>
+                </div>
+                <div className='auth-input-box'>
+                    <p className='user-pass'>Password</p>
+                    <input className='auth-input' type="text"/>
+                </div>
+                <div className='button-box'>
+                    <button className='auth-buttons' id='login-button' > Login </button>
+                    <button className='auth-buttons' id='register-button' > Register </button>
+                </div>
             </section>
         )
     }
