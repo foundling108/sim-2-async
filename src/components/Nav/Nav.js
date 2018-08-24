@@ -26,11 +26,18 @@ class Nav extends Component {
         if (this.props.location.pathname !== '/') {
 
             return(
-                <nav>
-                    <div id="menuToggle">
-                        <a id="logout"><li onClick={this.logout}>LOGOUT</li></a>
+                <section>
+                    <section  className='navbar'>
+                    <div className='nav-content'>
+                        <img src="./header_logo.png" alt="little house"/>
+                        <h1>Houser</h1>
+                        <h2>Dashboard</h2>
                     </div>
-                </nav>
+                    <div className='log-button'>
+                        <a><button className='logout' onClick={this.logout}>LOGOUT</button></a>
+                    </div>
+                    </section>
+                </section>
             )
         } else {
             
