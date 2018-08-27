@@ -8,25 +8,32 @@ module.exports = {
         .then( ( user ) => {
             req.session.user = user;
             res.status(200).send(user.username) })
-        .catch( err => {
-            res.status(500).send({errorMessage: "Catastrophic error!!!"});
+        .catch( (err) => {
+            res.status(500).send({errorMessage: "Could not register"});
             console.log(err)
         } );
     },
 
-    login: async( req, res, next ) => {
+    login: ( req, res, next ) => {
         const dbInstance = req.app.get('db');
         const { username, password } = req.body;
-        const match = users.find( user => user.username === username && user.password === password );
+        const user = users.find( user => user.username === username && user.password === password );
 
-        await dbInstance.users.get_users([ username, password ])            
-        if ( match ) {
-            req.session.user = match;
-            res.status(200).send(req.session.user);
-        } else {
-            res.status(401).send('Go away.');
-        }
-    
+        dbInstance.users.get_users([ username, password ])
+        .then(users => {
+
+            if ( match ) {
+                req.session.user.username = user.username;
+                res.status(200).send(req.session.user);
+            } else {
+                res.status(401).send('Go away.');
+            }
+        })
+        .catch( err => {
+            res.status(500).send({errorMessage: "Could not log in"});
+            console.log(err)
+        } );        
+            
     },
 
     

@@ -28,9 +28,9 @@ class Auth extends Component {
     }
 
     login() {
-        axios.get('/api/auth/login', this.state)
+        axios.get('/api/auth/login', {username: this.state.username, password: this.state.password})
         .then(res => {
-            if( res.data === "valid" ) {
+            if( res.status === 200 ) {
                 this.props.updateUser(res.data);
                 this.props.history.push('/dash');
             }
