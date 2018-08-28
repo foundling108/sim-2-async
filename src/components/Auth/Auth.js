@@ -11,9 +11,11 @@ class Auth extends Component {
         super(props);
 
         this.state = {
+            user: {},
             username: '',
             password: ''
         }
+        // matches reducer
 
         this.login = this.login.bind(this);
         this.register = this.register.bind(this);
@@ -30,7 +32,7 @@ class Auth extends Component {
     login() {
         axios.get('/api/auth/login', {username: this.state.username, password: this.state.password})
         .then(res => {
-            if( res.status === 200 ) {
+            if( res.data ) {
                 this.props.updateUser(res.data);
                 this.props.history.push('/dash');
             }
