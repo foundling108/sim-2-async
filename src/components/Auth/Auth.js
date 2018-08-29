@@ -30,18 +30,24 @@ class Auth extends Component {
     }
 
     login() {
-        axios.get('/api/auth/login', {username: this.state.username, password: this.state.password})
+        axios.post('/api/auth/login', {username: this.state.username, password: this.state.password})
         .then(res => {
-            if( res.data ) {
-                this.props.updateUser(res.data);
-                this.props.history.push('/dash');
-            }
-            else {
-                alert( "username and password do not match" )
-            }
-        })
-        .catch(err => console.log(err))
+            this.setState({
+                user: res.data
+            })
+            this.props.updateUser(res.data);
+            this.props.history.push('/dash');
+        } ).catch(err => console.log(err))
     }
+            //     if( res.data ) {
+            //         this.props.updateUser(res.data);
+            //         this.props.history.push('/dash');
+            //     }
+            //     else {
+            //         alert( "username and password do not match" )
+            //     }
+            // })
+            // .catch(err => console.log(err))
 
     register() {
         axios.post('/api/auth/register', this.state)

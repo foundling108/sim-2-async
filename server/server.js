@@ -28,7 +28,7 @@ app.use(checkForDevelopment)
 
 // Authorization controller
 app.post('/api/auth/register', auth_controller.register);
-app.get('/api/auth/login', auth_controller.login);
+app.post('/api/auth/login', auth_controller.login);
 app.get('/api/auth/logout', auth_controller.logout);
 
 const port =  process.env.PORT || 4000;

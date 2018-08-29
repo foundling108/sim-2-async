@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Wizard.css';
 
-import { updatePlace } from '../../dux/reducer';
+import { updateProperty } from '../../dux/reducer';
 
 
 class Wizard4 extends Component {
@@ -66,4 +66,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, {updatePlace}) (Wizard4);
+export default connect(mapStateToProps, {updateProperty}) (Wizard4);
