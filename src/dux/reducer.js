@@ -119,6 +119,13 @@ const initialState = {
     }
   }
 
+  export function newDescription(description) {
+    return {
+      type: DESCRIPTION,
+      payload: description
+    }
+  }
+
   export function newAddress(address) {
     return {
       type: ADDRESS,

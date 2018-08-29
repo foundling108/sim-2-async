@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Wizard.css';
 
-import { updateProperty } from '../../dux/reducer';
+import { newAddress, newCity, newState, newZip } from '../../dux/reducer';
 
 
 class Wizard2 extends Component {
@@ -70,12 +70,13 @@ class Wizard2 extends Component {
     }
 }
 
-function mapStateToProps(state) {
-  
-
+function mapStateToProps(reduxState) {
     return {
-        state
+        address: reduxState.address,
+        city: reduxState.city,
+        state: reduxState.state,
+        zip: reduxState.zip
     };
 }
 
-export default connect(mapStateToProps, {updateProperty}) (Wizard2);
+export default connect(mapStateToProps, { newAddress, newCity, newState, newZip }) (Wizard2);

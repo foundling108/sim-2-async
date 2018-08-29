@@ -15,15 +15,6 @@ class Dash extends Component {
         }
     }
 
-    // componentDidMount() {
-    //     axios.get('/api/auth/getUser')
-    //     .then( res => {
-    //         if( !res.data ) {
-    //             this.props.history.push('/');
-    //         }
-    //     })
-    // }
-
 
     render() {
         return(

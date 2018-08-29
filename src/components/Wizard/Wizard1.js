@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Wizard.css';
 
-import { updateProperty } from '../../dux/reducer';
+import { newName, newDescription } from '../../dux/reducer';
 
 
 class Wizard1 extends Component {
@@ -15,8 +15,22 @@ class Wizard1 extends Component {
             description: ''
         }
 
-
     }
+
+    addName = (e) => {
+        this.props.newName(e.target.value)
+        console.log(e, this.props.name)
+    }
+
+    addDescription = (e) => {
+        this.props.newDescription(e.target.value)
+    }
+
+    // handleChange() {
+    //     this.props.newName(this.state.name);
+    //     this.props.newDescription(this.state.description)
+    //     console.log(this.state);
+    // }
 
     render() {
         return(
@@ -37,9 +51,9 @@ class Wizard1 extends Component {
                     </div>
                     <div className='name-desc-box'>
                         <p className='texts' id='prop-name'>Property Name</p>
-                        <input className='input-boxes' id='input-name' type="text"/>
+                        <input className='input-boxes' id='input-name' type="text" onChange={this.addName} value={this.props.name}/>
                         <p className='texts'>Property Description</p>
-                        <input className='input-boxes' id='input-desc' type="text"/>
+                        <textarea className='input-boxes' id='input-desc' type="text" onChange={this.addDescription} value={this.props.description}/>
                     </div>
                 <div id='next-box1'>
                     <Link to='/wizard/wizard2'>
@@ -53,12 +67,11 @@ class Wizard1 extends Component {
     }
 }
 
-function mapStateToProps(state) {
-  
-
+function mapStateToProps(reduxState) {
     return {
-        state
+        name: reduxState.name,
+        description: reduxState.description
     };
 }
 
-export default connect(mapStateToProps, {updateProperty}) (Wizard1);
+export default connect(mapStateToProps, {newName, newDescription}) (Wizard1);
