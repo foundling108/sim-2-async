@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Wizard.css';
 
-import { updateProperty } from '../../dux/reducer';
+import { newDesiredRent } from '../../dux/reducer';
 
 
 class Wizard5 extends Component {
@@ -14,7 +14,15 @@ class Wizard5 extends Component {
             desired_rent: ''
         }
 
+        this.recoRent = this.recoRent.bind(this);
+    }
 
+    addDesiredRent = (e) => {
+        this.props.newDesiredRent(e.target.value)
+    }
+
+    recoRent() {
+        Math.floor((Math.random() *1200) + 500)
     }
 
     render() {
@@ -35,9 +43,9 @@ class Wizard5 extends Component {
                 <img className='the-dots' src={require("./../../icons/step_active.png")} alt="Step 5"/>
             </div>
             <div className='name-desc-box'>
-                <p className='texts' id='reco-rent'>Recommended Rent $</p>
+                <p className='texts' id='reco-rent'>Recommended Rent ${Math.floor((Math.random() * 1200) + 500)}</p>
                 <p className='texts' id='des-rent'>Desired Rent</p>
-                <input className='input-boxes' id='input-mort' type="text"/>
+                <input className='input-boxes' id='input-mort' type="text" onChange={this.addDesiredRent} value={this.props.desired_rent}/>
             </div>
             <div id='prev-next-box'>
                 <Link to='/wizard/wizard4'>
@@ -56,12 +64,10 @@ class Wizard5 extends Component {
     }
 }
 
-function mapStateToProps(state) {
-  
-
+function mapStateToProps(reduxState) {
     return {
-        state
+        desired_rent: reduxState.desired_rent
     };
 }
 
-export default connect(mapStateToProps, {updateProperty}) (Wizard5);
+export default connect(mapStateToProps, { newDesiredRent }) (Wizard5);

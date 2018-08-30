@@ -63,11 +63,11 @@ const initialState = {
       case IMAGE:
         return Object.assign( {}, state, { image: payload } );
       case LOAN_AMOUNT:
-        return Object.assign( {}, state, { loanAmount: payload } );
+        return Object.assign( {}, state, { loan_amount: payload } );
       case MONTHLY_MORTGAGE:
-        return Object.assign( {}, state, { monthlyMortgage: payload } );
+        return Object.assign( {}, state, { monthly_mortgage: payload } );
       case DESIRED_RENT:
-        return Object.assign( {}, state, { desiredRent: payload } );
+        return Object.assign( {}, state, { desired_rent: payload } );
       case LOGOUT:
         return initialState;
       default:

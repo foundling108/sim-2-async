@@ -17,7 +17,22 @@ class Wizard2 extends Component {
             zip: ''
         }
 
+    }
 
+    addAddress = (e) => {
+        this.props.newAddress(e.target.value)
+    }
+
+    addCity = (e) => {
+        this.props.newCity(e.target.value)
+    }
+
+    addState = (e) => {
+        this.props.newState(e.target.value)
+    }
+
+    addZip = (e) => {
+        this.props.newZip(e.target.value)
     }
 
     render() {
@@ -39,19 +54,19 @@ class Wizard2 extends Component {
                 </div>
                 <div className='address-box' >
                     <p className='texts' id='address' >Address</p>
-                    <input className='input-boxes' id='input-add' type="text"/>
+                    <input className='input-boxes' id='input-add' type="text" onChange={this.addAddress} value={this.props.address}/>
                 </div>
                 <div className='city-state-box' >
                     <p className='texts' id='city' >City</p>
                     <p className='texts' id='state' >State</p>
                 </div>
                 <div className='city-state-box' >
-                    <input className='input-boxes' id='input-city' type="text"/>
-                    <input className='input-boxes' id='input-state' type="text"/>
+                    <input className='input-boxes' id='input-city' type="text" onChange={this.addCity} value={this.props.city}/>
+                    <input className='input-boxes' id='input-state' type="text" onChange={this.addState} value={this.props.state}/>
                 </div>
                 <div className='zip-box' >
                     <p className='texts' id='zip' >Zip</p>
-                    <input className='input-boxes' id='input-zip' type="text"/>
+                    <input className='input-boxes' id='input-zip' type="text" onChange={this.addZip} value={this.props.zip}/>
                 </div>
             <div id='prev-next-box'>
                 <Link to='/wizard/wizard1'>

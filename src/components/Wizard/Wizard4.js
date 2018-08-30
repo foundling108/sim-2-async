@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Wizard.css';
 
-import { updateProperty } from '../../dux/reducer';
+import { newLoanAmount, newMonthlyMortgage } from '../../dux/reducer';
 
 
 class Wizard4 extends Component {
@@ -14,8 +14,14 @@ class Wizard4 extends Component {
             loan_amount: '',
             monthly_mortgage: ''
         }
+    }
 
+    addLoanAmount = (e) => {
+        this.props.newLoanAmount(e.target.value)
+    }
 
+    addMonthlyMortgage = (e) => {
+        this.props.newMonthlyMortgage(e.target.value)
     }
 
     render() {
@@ -37,9 +43,9 @@ class Wizard4 extends Component {
             </div>
             <div className='name-desc-box'>
                 <p className='texts' id='prop-name'>Loan Amount</p>
-                <input className='input-boxes' id='input-name' type="text"/>
+                <input className='input-boxes' id='input-name' type="text" onChange={this.addLoanAmount} value={this.props.loan_amount}/>
                 <p className='texts'>Monthly Mortgage</p>
-                <input className='input-boxes' id='input-mort' type="text"/>
+                <input className='input-boxes' id='input-mort' type="text" onChange={this.addMonthlyMortgage} value={this.props.monthly_mortgage}/>
             </div>
             <div id='prev-next-box'>
                 <Link to='/wizard/wizard3'>
@@ -58,12 +64,11 @@ class Wizard4 extends Component {
     }
 }
 
-function mapStateToProps(state) {
-  
-
+function mapStateToProps(reduxState) {
     return {
-        state
+        loan_amount :reduxState.loan_amount,
+        monthly_mortgage: reduxState.monthly_mortgage
     };
 }
 
-export default connect(mapStateToProps, {updateProperty}) (Wizard4);
+export default connect(mapStateToProps, {newLoanAmount, newMonthlyMortgage}) (Wizard4);

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Wizard.css';
 
-import { updateProperty } from '../../dux/reducer';
+import { newImage } from '../../dux/reducer';
 
 
 class Wizard3 extends Component {
@@ -11,11 +11,14 @@ class Wizard3 extends Component {
         super(props)
         
         this.state = {
-            image: [],
-            iamgeUrl: ''
+            image: '',
+            picture: []
         }
 
+    }
 
+    addImage = (e) => {
+        this.props.newImage(e.target.value)
     }
 
     render() {
@@ -36,11 +39,11 @@ class Wizard3 extends Component {
                     <img className='the-dots' src={require("./../../icons/step_inactive.png")} alt="Step 5"/>
                 </div>
                 <div className='preview-img'>
-                    <img src="" alt=""/>
+                    <img src={this.state.image} alt="preview"/>
                 </div>
                 <div className='img-box' >
                     <p className='texts' id='img-url' >Image URL</p>
-                    <input className='input-boxes' id='input-img' type="text"/>
+                    <input className='input-boxes' id='input-img' type="text" onChange={this.addImage} value={this.props.image} placeholder='url...'/>
                 </div>
             <div id='prev-next-box3'>
                 <Link to='/wizard/wizard2'>
@@ -59,12 +62,10 @@ class Wizard3 extends Component {
     }
 }
 
-function mapStateToProps(state) {
-  
-
+function mapStateToProps(reduxState) {
     return {
-        state
+        image: reduxState.image
     };
 }
 
-export default connect(mapStateToProps, {updateProperty}) (Wizard3);
+export default connect(mapStateToProps, {newImage}) (Wizard3);
