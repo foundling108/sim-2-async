@@ -11,7 +11,8 @@ class Wizard5 extends Component {
         super(props)
         
         this.state = {
-            desired_rent: ''
+            desired_rent: '',
+            recommended: this.props.monthly_mortgage * 1.25
         }
 
         this.recoRent = this.recoRent.bind(this);
@@ -43,7 +44,7 @@ class Wizard5 extends Component {
                 <img className='the-dots' src={require("./../../icons/step_active.png")} alt="Step 5"/>
             </div>
             <div className='name-desc-box'>
-                <p className='texts' id='reco-rent'>Recommended Rent ${Math.floor((Math.random() * 1200) + 500)}</p>
+                <p className='texts' id='reco-rent' value={this.props.monthly_mortgage * 1.25} >Recommended Rent ${this.props.monthly_mortgage * 1.25}</p>
                 <p className='texts' id='des-rent'>Desired Rent</p>
                 <input className='input-boxes' id='input-mort' type="text" onChange={this.addDesiredRent} value={this.props.desired_rent}/>
             </div>
