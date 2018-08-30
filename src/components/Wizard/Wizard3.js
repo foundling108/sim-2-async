@@ -39,7 +39,7 @@ class Wizard3 extends Component {
                     <img className='the-dots' src={require("./../../icons/step_inactive.png")} alt="Step 5"/>
                 </div>
                 <div className='preview-img'>
-                    <img src={this.state.image} alt="preview"/>
+                    <img src={this.props.image} alt="preview" value={this.props.image}/>
                 </div>
                 <div className='img-box' >
                     <p className='texts' id='img-url' >Image URL</p>
