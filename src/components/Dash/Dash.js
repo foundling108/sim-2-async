@@ -17,6 +17,43 @@ class Dash extends Component {
 
 
     render() {
+        const propertyDisplay = this.state.properties.map( (el, i) => {
+            if(el.name === null && el.description === null) {
+                return(
+                    null
+                )
+            } else {
+                return(
+                    <section className='cards' key={el.id}>
+                    <div className='card-img-box'>
+                    <img id='card-img' src={el.image} alt="house"/>
+                    </div>
+                    <div className='name-desc-card-box'>
+                        <h5>Name {el.name}</h5>
+                        <p>{el.description}</p>
+                    </div>
+                    <section className='h5-hr-box'>
+                        <div className='hr-box'>
+                            <hr id='vertical-line'/>
+                        </div>
+                        <div className='h5-box'>
+                            <h5>Loan: {el.loan_amount}</h5>
+                            <h5>Monthly Mortgage: {el.monthly_mortgage}</h5>
+                            <h5>Recommended Rent: {el.recommend_rent}</h5>
+                            <h5>Desired Rent: {el.desired_rent}</h5>
+                            <h5>Address: {el.address}</h5>
+                            <h5>City: {el.city}</h5>
+                            <h5>State: {el.state}</h5>
+                            <h5>Zip: {el.zip}</h5>
+                        </div>
+                    </section>
+                    <div className='lil-x' >
+                        <img src={require('./../../icons/delete_icon.png')} alt=""/>
+                    </div>
+                </section>
+                )
+            }
+        } )
         return(
 
             <section className='dash-box'>
@@ -40,7 +77,7 @@ class Dash extends Component {
                     <h3>Home Listings</h3>
                 </div>
                 <div className='card-box'>
-                    <Card/>
+                    { propertyDisplay }
                 </div>
             </section>
 
@@ -56,34 +93,36 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, { getUserData }) (Dash);
 
-function Card(props){
-    return(
-        <section className='cards'>
-            <div className='card-img-box'>
-            <img id='card-img' src="" alt="house"/>
-            </div>
-            <div className='name-desc-card-box'>
-                <h5>Name</h5>
-                <p>description</p>
-            </div>
-            <section className='h5-hr-box'>
-                <div className='hr-box'>
-                    <hr id='vertical-line'/>
-                </div>
-                <div className='h5-box'>
-                    <h5>Loan</h5>
-                    <h5>Monthly Mortgage</h5>
-                    <h5>Recommended Rent</h5>
-                    <h5>Desired Rent</h5>
-                    <h5>Address</h5>
-                    <h5>City</h5>
-                    <h5>State</h5>
-                    <h5>Zip</h5>
-                </div>
-            </section>
-            <div className='lil-x' >
-                <img src={require('./../../icons/delete_icon.png')} alt=""/>
-            </div>
-        </section>
-    )
-}
+// function Card(props){
+//     let fullCard = this.props.properties.map( el => { 
+//         return(
+//             <section className='cards' key={el.id}>
+//                 <div className='card-img-box'>
+//                 <img id='card-img' src={el.image} alt="house"/>
+//                 </div>
+//                 <div className='name-desc-card-box'>
+//                     <h5>Name {el.name}</h5>
+//                     <p>{el.description}</p>
+//                 </div>
+//                 <section className='h5-hr-box'>
+//                     <div className='hr-box'>
+//                         <hr id='vertical-line'/>
+//                     </div>
+//                     <div className='h5-box'>
+//                         <h5>Loan: {el.loan_amount}</h5>
+//                         <h5>Monthly Mortgage: {el.monthly_mortgage}</h5>
+//                         <h5>Recommended Rent: {el.recommend_rent}</h5>
+//                         <h5>Desired Rent: {el.desired_rent}</h5>
+//                         <h5>Address: {el.address}</h5>
+//                         <h5>City: {el.city}</h5>
+//                         <h5>State: {el.state}</h5>
+//                         <h5>Zip: {el.zip}</h5>
+//                     </div>
+//                 </section>
+//                 <div className='lil-x' >
+//                     <img src={require('./../../icons/delete_icon.png')} alt=""/>
+//                 </div>
+//             </section>
+//             )
+//     })
+// }

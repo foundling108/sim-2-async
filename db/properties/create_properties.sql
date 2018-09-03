@@ -10,7 +10,7 @@ INSERT INTO properties (
     loan_amount,
     monthly_mortgage,
     desired_rent,
-    seller_id
+    recommended_rent
 ) VALUES (
     $1,
     $2,
@@ -25,7 +25,3 @@ INSERT INTO properties (
     $11,
     $12
 );
-
-SELECT *
-FROM properties
-WHERE seller_id = $12

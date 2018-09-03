@@ -14,7 +14,8 @@ const initialState = {
     image: '',
     loan_amount: '',
     monthly_mortgage: '',
-    desired_rent: ''
+    desired_rent: '',
+    recommended_rent: ''
   }
   
   const USER_DATA = 'USER_DATA';
@@ -23,7 +24,7 @@ const initialState = {
 
   const GET_PROPERTIES = 'GET_PROPERTIES';
   const FILTER_PROPERTIES = 'FILTER_PROPERTIES';
-  const PROPERTY_INFO = 'PROPERTY_INFO';
+  const UPDATE_PROPERTIES = 'UPDATE_PROPERTIES';
   const NAME = 'NAME';
   const DESCRIPTION = 'DESCRIPTION';
   const ADDRESS = 'ADDRESS';
@@ -34,6 +35,8 @@ const initialState = {
   const LOAN_AMOUNT = 'LOAN_AMOUT';
   const MONTHLY_MORTGAGE = 'MONTHLY_MORTGAGE';
   const DESIRED_RENT = 'DESIRED_RENT';
+  const RECOMMENDED_RENT = 'RECOMMENDED_RENT';
+
   
   export default function (state = initialState, action) {
     let { type, payload } = action;
@@ -46,8 +49,8 @@ const initialState = {
         return Object.assign( {}, state, { properties: payload } );
       case FILTER_PROPERTIES + '_FULFILLED':
         return Object.assign( {}, state, { properties: payload } );
-      case PROPERTY_INFO:
-        return Object.assign( {}, state, {placeObj: payload} );
+      case UPDATE_PROPERTIES: 
+        return Object.assign( {}, state, {name:'', description:'', address:'', city:'', state:'', zip:'', image:'', loan_amount:'', monthly_mortgage:'', desired_rent:''} )
       case NAME:
         return Object.assign( {}, state, { name: payload } );
       case DESCRIPTION:
@@ -68,6 +71,8 @@ const initialState = {
         return Object.assign( {}, state, { monthly_mortgage: payload } );
       case DESIRED_RENT:
         return Object.assign( {}, state, { desired_rent: payload } );
+      case RECOMMENDED_RENT:
+        return Object.assign( {}, state, { recommended_rent: payload } ); 
       case LOGOUT:
         return initialState;
       default:
@@ -105,10 +110,10 @@ const initialState = {
     }
   }
 
-  export function updateProperty(placeObj){
+  export function updateProperty(name, description, address, city, state, zip, image, loan_amount, monthly_mortgage, desired_rent){
     return {
-    type: PROPERTY_INFO,
-    payload: placeObj
+    type: UPDATE_PROPERTIES,
+    payload:[ name, description, address, city, state, zip, image, loan_amount, monthly_mortgage, desired_rent ]
     }
   }
 
@@ -179,6 +184,13 @@ const initialState = {
     return {
       type: DESIRED_RENT,
       payload: desired_rent
+    }
+  }
+
+  export function newRecommendeRent(recommended_rent) {
+    return {
+      type: RECOMMENDED_RENT,
+      payload: recommended_rent
     }
   }
 

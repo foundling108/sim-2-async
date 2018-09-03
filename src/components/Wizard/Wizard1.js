@@ -19,7 +19,6 @@ class Wizard1 extends Component {
 
     addName = (e) => {
         this.props.newName(e.target.value)
-        console.log(e, this.props.name)
     }
 
     addDescription = (e) => {

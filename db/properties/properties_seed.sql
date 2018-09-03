@@ -10,6 +10,7 @@ create table properties (
 	loan_amount VARCHAR(50),
 	monthly_mortgage VARCHAR(50),
 	desired_rent VARCHAR(50),
-	seller_id INT,
-	FOREIGN KEY (seller_id) REFERENCES users(user_id)
+	user_id INT,
+	FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
+

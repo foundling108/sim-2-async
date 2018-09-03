@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import './Wizard.css';
 
-import { newDesiredRent } from '../../dux/reducer';
+import { newDesiredRent, updateProperty } from '../../dux/reducer';
 
 
 class Wizard5 extends Component {
@@ -11,22 +12,50 @@ class Wizard5 extends Component {
         super(props)
         
         this.state = {
+
             desired_rent: '',
             recommended: this.props.monthly_mortgage * 1.25
         }
 
-        this.recoRent = this.recoRent.bind(this);
+        this.createProperty = this.createProperty.bind(this);
     }
 
     addDesiredRent = (e) => {
         this.props.newDesiredRent(e.target.value)
     }
 
-    recoRent() {
-        Math.floor((Math.random() *1200) + 500)
+    createProperty() {
+        const { recommended } = this.state;
+        let { name, description, address, city, state, zip, image, loan_amount, monthly_mortgage, desired_rent } = this.props;
+
+        let content = {
+            name: name, 
+            description: description, 
+            address: address,
+            city: city, 
+            state: state, 
+            zip: zip, 
+            image: image, 
+            loan_amount: loan_amount, 
+            monthly_mortgage: monthly_mortgage, 
+            desired_rent: desired_rent,
+            recommended_rent: recommended
+        }
+
+        axios.post('/api/properties', content)
+                  .then(res => {})
+                  .catch(err => console.log(err))
+            this.props.updateProperty()
+            this.props.history.push('/dash')
+
+
     }
 
+
+
     render() {
+        const { newDesiredRent } = this.props;
+            console.log(this.props.monthly_mortgage)
         return(
         <section className='wiz-box'>
             <div className='add-cancel'>
@@ -46,7 +75,7 @@ class Wizard5 extends Component {
             <div className='name-desc-box'>
                 <p className='texts' id='reco-rent' value={this.props.monthly_mortgage * 1.25} >Recommended Rent ${this.props.monthly_mortgage * 1.25}</p>
                 <p className='texts' id='des-rent'>Desired Rent</p>
-                <input className='input-boxes' id='input-mort' type="text" onChange={this.addDesiredRent} value={this.props.desired_rent}/>
+                <input className='input-boxes' id='input-mort' type="text" onChange={(e) => newDesiredRent(e.target.value)} value={this.props.desired_rent}/>
             </div>
             <div id='prev-next-box'>
                 <Link to='/wizard/wizard4'>
@@ -54,11 +83,11 @@ class Wizard5 extends Component {
                         Previous Step
                     </button>
                 </Link>
-                <Link to='/dash'>
-                    <button className='next-step' id='prev-next-comp'>
+
+                    <button className='next-step' id='prev-next-comp' onClick={this.createProperty}>
                         Complete
                     </button>
-                </Link>
+
             </div>
         </section>
         )
@@ -67,8 +96,17 @@ class Wizard5 extends Component {
 
 function mapStateToProps(reduxState) {
     return {
+        name: reduxState.name,
+        description: reduxState.description,
+        address: reduxState.address,
+        city: reduxState.city,
+        state: reduxState.state,
+        zip: reduxState.zip,
+        image: reduxState.image,
+        loan_amount :reduxState.loan_amount,
+        monthly_mortgage: reduxState.monthly_mortgage,
         desired_rent: reduxState.desired_rent
     };
 }
 
-export default connect(mapStateToProps, { newDesiredRent }) (Wizard5);
+export default connect(mapStateToProps, { newDesiredRent, updateProperty }) (Wizard5);
