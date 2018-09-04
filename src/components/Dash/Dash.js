@@ -11,10 +11,15 @@ class Dash extends Component {
         super(props);
 
         this.state = {
-            properties: []
+            properties: [],
+            filterify: 0,
+            byAmount: 0
         }
 
         this.deleteCard = this.deleteCard.bind(this);
+        this.filterByAmount = this.filterByAmount.bind(this);
+        this.filterButton = this.filterButton.bind(this);
+        this.resetButton = this.resetButton.bind(this);
     }
 
     componentDidMount() {
@@ -33,12 +38,32 @@ class Dash extends Component {
                 properties: res.data
             })
         })
+    }
 
+    filterByAmount(e) {
+        this.setState({
+            byAmount: e.target.value
+        })
+    }
+
+    filterButton(){
+        this.setState({
+            filterify: this.state.byAmount
+        })
+    }
+
+    resetButton() {
+        this.setState({
+            filterify: 0,
+            byAmount: 0
+        })
     }
 
 
     render() {
-        const propertyDisplay = this.state.properties.map( (el, i) => {
+        const propertyDisplay = this.state.properties.filter( (cards, i) => {
+            return cards.desired_rent > this.state.filterify ? true : false
+        }).map( (el, i) => {
             if(el.name === null && el.description === null) {
                 return(
                     null
@@ -90,9 +115,9 @@ class Dash extends Component {
                     <p className='rent-text'>
                     List properties with "desired rent" greater than: $
                     </p>
-                    <input className='rent-input' type="text" placeholder='0'/>
-                    <button className='fil-res' id='filter'>Filter</button>
-                    <button className='fil-res' id='reset'>Reset</button>
+                    <input className='rent-input' type="text" placeholder='0' onChange={this.filterByAmount} value={this.state.byAmount}/>
+                    <button className='fil-res' id='filter' onClick={this.filterButton}>Filter</button>
+                    <button className='fil-res' id='reset' onClick={this.resetButton}>Reset</button>
                 </div>
                 <hr/>
                 <div className='h3-div'>
