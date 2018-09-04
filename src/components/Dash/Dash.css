@@ -92,11 +92,12 @@ h3 {
 
 .card-box {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .cards {
     display: flex;
+    margin-bottom: 20px;
     position: relative;
     top: 220px;
     left: 40px;

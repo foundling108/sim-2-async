@@ -44,6 +44,7 @@ class Dash extends Component {
                     null
                 )
             } else {
+                let calculateRec = el.monthly_mortgage * 1.25
                 return(
                     <section className='cards' key={el.id}>
                     <div className='card-img-box'>
@@ -60,7 +61,7 @@ class Dash extends Component {
                         <div className='h5-box'>
                             <h5>Loan: {el.loan_amount}</h5>
                             <h5>Monthly Mortgage: {el.monthly_mortgage}</h5>
-                            <h5>Recommended Rent: {el.recommend_rent}</h5>
+                            <h5>Recommended Rent: {calculateRec}</h5>
                             <h5>Desired Rent: {el.desired_rent}</h5>
                             <h5>Address: {el.address}</h5>
                             <h5>City: {el.city}</h5>
