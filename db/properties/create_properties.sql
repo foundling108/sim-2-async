@@ -1,5 +1,4 @@
 INSERT INTO properties (
-    id,
     name,
     description,
     address,
@@ -10,7 +9,8 @@ INSERT INTO properties (
     loan_amount,
     monthly_mortgage,
     desired_rent,
-    recommended_rent
+    recommended_rent,
+    user_id
 ) VALUES (
     $1,
     $2,

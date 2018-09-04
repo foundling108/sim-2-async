@@ -1,5 +1,5 @@
 create table properties (
-	id INT,
+	id SERIAL,
 	name VARCHAR(50),
 	description VARCHAR(200),
 	address VARCHAR(80),
@@ -10,6 +10,7 @@ create table properties (
 	loan_amount VARCHAR(50),
 	monthly_mortgage VARCHAR(50),
 	desired_rent VARCHAR(50),
+	recommended_rent VARCHAR(50)
 	user_id INT,
 	FOREIGN KEY (user_id) REFERENCES users(user_id)
 );

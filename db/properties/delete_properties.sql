@@ -1,4 +1,5 @@
 DELETE FROM properties
 WHERE id = $1;
 SELECT *
-FROM properties;
+FROM properties
+WHERE user_id = $2;

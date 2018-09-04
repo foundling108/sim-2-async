@@ -106,11 +106,17 @@ h3 {
     height: 150px;
     width: 150px;
     background: gray;
+    overflow: scroll;
 }
 
 h5 {
     font-size: 20px;
     font-weight: 700;
+}
+
+#name-h5 {
+    position: relative;
+    right: 27%;
 }
 
 .name-desc-card-box {

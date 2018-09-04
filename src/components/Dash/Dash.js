@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-// import axios from 'axios';
+import axios from 'axios';
 import { getUserData } from './../../dux/reducer';
 import { connect } from 'react-redux';
 // import Card from './Card/Card';
@@ -13,6 +13,27 @@ class Dash extends Component {
         this.state = {
             properties: []
         }
+
+        this.deleteCard = this.deleteCard.bind(this);
+    }
+
+    componentDidMount() {
+        axios.get('/api/properties')
+        .then(res => {
+            this.setState({
+                properties: res.data
+            })
+        })
+    }
+
+    deleteCard(id) {
+        axios.delete(`/api/properties/${id}`)
+        .then(res => {
+            this.setState({
+                properties: res.data
+            })
+        })
+
     }
 
 
@@ -26,10 +47,10 @@ class Dash extends Component {
                 return(
                     <section className='cards' key={el.id}>
                     <div className='card-img-box'>
-                    <img id='card-img' src={el.image} alt="house"/>
+                        <img id='card-img' src={el.image} alt="house"/>
                     </div>
                     <div className='name-desc-card-box'>
-                        <h5>Name {el.name}</h5>
+                        <h5 id='name-h5'>Name {el.name}</h5>
                         <p>{el.description}</p>
                     </div>
                     <section className='h5-hr-box'>
@@ -48,7 +69,7 @@ class Dash extends Component {
                         </div>
                     </section>
                     <div className='lil-x' >
-                        <img src={require('./../../icons/delete_icon.png')} alt=""/>
+                        <img src={require('./../../icons/delete_icon.png')} alt="delete" onClick={() => this.deleteCard(el.id)}/>
                     </div>
                 </section>
                 )

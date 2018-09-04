@@ -40,6 +40,8 @@ app.get('/api/auth/logout', auth_controller.logout);
 
 // Properties controller
 app.post('/api/properties', checkForAuth, wizard_controller.createNewProperty);
+app.get('/api/properties', wizard_controller.getProperties);
+app.delete('/api/properties/:id', wizard_controller.deleteProperty);
 
 const port =  process.env.PORT || 4000;
 app.listen( port, () => { console.log(`Listening on port ${port}.`); } )
